@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>管理后台 · 企业建站系统（精简开源版）</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="admin-layout">
+    <aside class="sidebar">
+      <div class="brand">企业<span class="accent">建站</span> 后台</div>
+      <div class="side-link active" data-view="dashboard">仪表盘</div>
+      <div class="side-link" data-view="pages">页面管理</div>
+      <div class="side-link" data-view="settings">站点设置</div>
+      <div class="side-link" id="btnResetData" style="margin-top:20px;color:var(--red)">重置示例数据</div>
+      <a href="index.html" class="side-link">← 返回前台</a>
+    </aside>
+
+    <main class="admin-main">
+      <section id="view-dashboard" class="admin-view active">
+        <div class="page-head"><h1>仪表盘</h1><p>网站页面与导航概览。</p></div>
+        <div class="stat-grid" id="statGrid"></div>
+        <table>
+          <thead><tr><th>最近更新的页面</th><th>状态</th><th>更新时间</th></tr></thead>
+          <tbody id="recentPagesBody"></tbody>
+        </table>
+      </section>
+
+      <section id="view-pages" class="admin-view">
+        <div class="page-head"><h1>页面管理</h1><p>添加、编辑或删除页面，控制导航顺序与发布状态。</p></div>
+        <div class="table-toolbar">
+          <span></span>
+          <button class="btn btn-primary btn-sm" id="btnAddPage">+ 新增页面</button>
+        </div>
+        <table>
+          <thead><tr><th>标题</th><th>Slug</th><th>导航顺序</th><th>显示于导航</th><th>状态</th><th>操作</th></tr></thead>
+          <tbody id="pagesBody"></tbody>
+        </table>
+      </section>
+
+      <section id="view-settings" class="admin-view">
+        <div class="page-head"><h1>站点设置</h1><p>修改网站名称、简介与联系方式，保存后前台立即生效。</p></div>
+        <div id="settingsMsg"></div>
+        <form id="settingsForm" novalidate style="max-width:520px">
+          <div class="field"><label>网站名称</label><input id="siteNameInput" type="text" required></div>
+          <div class="field"><label>网站简介</label><textarea id="siteDescInput" rows="3" required></textarea></div>
+          <div class="field-row">
+            <div class="field"><label>联系电话</label><input id="contactPhoneInput" type="text"></div>
+            <div class="field"><label>联系邮箱</label><input id="contactEmailInput" type="text"></div>
+          </div>
+          <button type="submit" class="btn btn-primary">保存设置</button>
+        </form>
+      </section>
+    </main>
+  </div>
+
+  <div class="modal-backdrop" id="pageModalBackdrop">
+    <div class="modal">
+      <button class="modal-close" id="btnClosePageModal">&times;</button>
+      <h2 id="pageModalTitle">新增页面</h2>
+      <div id="pageModalMsg"></div>
+      <form id="pageForm" novalidate>
+        <input type="hidden" id="pageIdInput">
+        <div class="field"><label>页面标题</label><input id="pageTitleInput" type="text" required></div>
+        <div class="field"><label>Slug（用于导航链接，需唯一）</label><input id="pageSlugInput" type="text" required placeholder="例如 about"></div>
+        <div class="field"><label>页面内容</label><textarea id="pageContentInput" rows="6" placeholder="可分多段落，每行一段"></textarea></div>
+        <div class="field-row">
+          <div class="field"><label>导航顺序（数字越小越靠前）</label><input id="pageNavOrderInput" type="number" value="0" required></div>
+          <div class="field" style="justify-content:center">
+            <label class="checkbox-label"><input id="pageShowInNavInput" type="checkbox" checked> 显示于导航栏</label>
+            <label class="checkbox-label"><input id="pagePublishedInput" type="checkbox" checked> 已发布</label>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">保存</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="data.js"></script>
+  <script src="admin.js"></script>
+
+<footer style="margin:40px auto 16px;max-width:1100px;padding:16px 20px 0;border-top:1px solid var(--line,rgba(147,160,184,.18));text-align:center;color:var(--muted,#93A0B8);font-size:13px">精简开源演示 &middot; 完整版：<a href="https://inzyxuashop.com/cms-yuanma.html" target="_blank" rel="noopener" style="color:var(--cyan,#19B8D4);text-decoration:none">企业建站系统源码</a></footer>
+</body>
+</html>
